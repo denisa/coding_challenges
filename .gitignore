@@ -1,0 +1,13 @@
+# ignore eclipse project
+.checkstyle
+.classpath
+.metadata
+.project
+.settings
+# ignore idea projects
+.idea/
+*.iml
+# ignore maven's target
+target/
+# ignore vagrant/puppet/...
+.vagrant
