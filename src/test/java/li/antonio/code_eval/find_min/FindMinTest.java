@@ -23,9 +23,7 @@ public class FindMinTest {
 
             final Integer[] integers = set.toArray(new Integer[set.size()]);
             Arrays.sort(integers);
-//            System.out.println("all integers: " + Arrays.asList(integers));
             m[i] = smallestMissingInt(integers);
-//            System.out.println("Added "+ m[i]);
         }
         return m;
     }

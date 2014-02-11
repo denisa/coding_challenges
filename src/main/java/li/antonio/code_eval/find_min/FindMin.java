@@ -7,9 +7,15 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+/**
+ * https://www.codeeval.com/browse/85/
+ */
 public class FindMin {
 
     private static final Pattern COMA_SEPARATED = Pattern.compile(",");
+
+    private FindMin() {
+    }
 
     public static void main(final String[] argv) throws IOException {
         for (final String s : Files.readAllLines(new File(argv[0]).toPath(), Charset.defaultCharset())) {
@@ -20,6 +26,7 @@ public class FindMin {
             final int b = Integer.parseInt(split[3]);
             final int c = Integer.parseInt(split[4]);
             final int r = Integer.parseInt(split[5]);
+            //noinspection UseOfSystemOutOrSystemErr
             System.out.println(find_min(n, k, a, b, c, r));
         }
     }
@@ -30,16 +37,10 @@ public class FindMin {
         final int[] sorted_m = m.clone();
         Arrays.sort(sorted_m);
 
-        System.out.println(Arrays.toString(m));
-        System.out.println(Arrays.toString(sorted_m));
-
         for (int i = k; i < n; i++) {
             final int mnc = minimumNotContained(sorted_m);
             final int removed = left_shift(m, mnc);
             replace(sorted_m, removed, mnc);
-            System.out.println(i + ":\n");
-            System.out.println(Arrays.toString(m));
-            System.out.println(Arrays.toString(sorted_m));
         }
         return m[m.length - 1];
     }
@@ -86,15 +87,11 @@ public class FindMin {
             m[m.length - 1] = added;
             return;
         }
+
         final int insertIndex = Arrays.binarySearch(m, added);
-        if (insertIndex < 0) {
-            final int iIndex = -(insertIndex + 1);
-            System.arraycopy(m, iIndex, m, iIndex + 1, m.length - iIndex - 1);
-            m[iIndex] = added;
-        } else {
-            System.arraycopy(m, insertIndex, m, insertIndex + 1, m.length - insertIndex - 1);
-            m[insertIndex] = added;
-        }
+        final int insertAt = insertIndex < 0 ? -(insertIndex + 1) : insertIndex;
+        System.arraycopy(m, insertAt, m, insertAt + 1, m.length - insertAt - 1);
+        m[insertAt] = added;
     }
 
 }
