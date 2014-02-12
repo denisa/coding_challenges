@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
 /**
  * https://www.codeeval.com/browse/85/
  */
-public class FindMin {
+public class Main {
 
     private static final Pattern COMA_SEPARATED = Pattern.compile(",");
 
-    private FindMin() {
+    private Main() {
     }
 
     public static void main(final String[] argv) throws IOException {
