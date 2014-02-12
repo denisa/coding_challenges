@@ -32,7 +32,6 @@ public class FindMin {
     }
 
     static int find_min(final int n, final int k, final int a, final int b, final int c, final int r) {
-        // todo (Denis) Math.min(k, n) ?
         final int[] m = seed(k, a, b, c, r);
         final int[] sorted_m = m.clone();
         Arrays.sort(sorted_m);
@@ -80,18 +79,22 @@ public class FindMin {
         }
 
         final int removalIndex = Arrays.binarySearch(m, removed);
-        if (removalIndex < m.length - 1) {
+        if (m[m.length - 1] <= added) {
             System.arraycopy(m, removalIndex + 1, m, removalIndex, m.length - removalIndex - 1);
-        }
-        if (added >= m[m.length - 1]) {
             m[m.length - 1] = added;
             return;
         }
 
         final int insertIndex = Arrays.binarySearch(m, added);
         final int insertAt = insertIndex < 0 ? -(insertIndex + 1) : insertIndex;
-        System.arraycopy(m, insertAt, m, insertAt + 1, m.length - insertAt - 1);
-        m[insertAt] = added;
+
+        if (removalIndex >= insertAt) {
+            System.arraycopy(m, insertAt, m, insertAt + 1, removalIndex - insertAt);
+            m[insertAt] = added;
+        } else {
+            System.arraycopy(m, removalIndex + 1, m, removalIndex, insertAt - removalIndex - 1);
+            m[insertAt - 1] = added;
+        }
     }
 
 }
