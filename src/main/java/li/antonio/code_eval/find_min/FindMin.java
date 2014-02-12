@@ -32,7 +32,9 @@ public class FindMin {
     }
 
     static int find_min(final int n, final int k, final int a, final int b, final int c, final int r) {
-        final int[] m = seed(k, a, b, c, r);
+        final int[] m = new int[k];
+
+        seed(m, a, b, c, r);
         final int[] sorted_m = m.clone();
         Arrays.sort(sorted_m);
 
@@ -44,13 +46,11 @@ public class FindMin {
         return m[m.length - 1];
     }
 
-    static int[] seed(final int k, final int a, final int b, final int c, final int r) {
-        final int[] m = new int[k];
+    static void seed(final int[] m, final int a, final int b, final int c, final int r) {
         m[0] = a;
-        for (int i = 1; i < k; i++) {
+        for (int i = 1; i < m.length; i++) {
             m[i] = (b * m[i - 1] + c) % r;
         }
-        return m;
     }
 
     static int minimumNotContained(final int[] m) {
