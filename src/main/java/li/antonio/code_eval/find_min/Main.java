@@ -49,7 +49,7 @@ public class Main {
     static void seed(final int[] m, final int a, final int b, final int c, final int r) {
         m[0] = a;
         for (int i = 1; i < m.length; i++) {
-            m[i] = (b * m[i - 1] + c) % r;
+            m[i] = (int) (((long) b * m[i - 1] + c) % r);
         }
     }
 
