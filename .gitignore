@@ -1,9 +1,3 @@
-# ignore eclipse project
-.checkstyle
-.classpath
-.metadata
-.project
-.settings
 # ignore idea projects
 .idea/
 *.iml
@@ -11,3 +5,5 @@
 target/
 # ignore vagrant/puppet/...
 .vagrant
+# mac
+.DS_Store
