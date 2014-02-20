@@ -27,10 +27,10 @@ public class Main {
     }
 
     static String lcs(final String x, final String y) {
-        return printLcs(lcsLengths(x, y), x, x.length(), y.length());
+        return printLcs(lcsLengths(x, y), x);
     }
 
-    static int[][] lcsLengths(final String x, final String y) {
+    private static int[][] lcsLengths(final String x, final String y) {
         int[][] c = new int[x.length() + 1][y.length() + 1];
         for (int i = 1; i < c.length; i++) {
             for (int j = 1; j < c[i].length; j++) {
@@ -44,17 +44,20 @@ public class Main {
         return c;
     }
 
-    private static String printLcs(final int[][] c, final String x, final int i, final int j) {
-        if (i == 0 || j == 0) {
-            return "";
+    private static String printLcs(final int[][] c, final String x) {
+        String result = "";
+        for (int i = c.length - 1, j = c[0].length - 1; i > 0 && j > 0; ) {
+            if (c[i][j] == c[i - 1][j]) {
+                i--;
+            } else if (c[i][j] == c[i][j - 1]) {
+                j--;
+            } else {
+                result = x.charAt(i - 1) + result;
+                i--;
+                j--;
+            }
         }
-        if (c[i][j] == c[i - 1][j]) {
-            return printLcs(c, x, i - 1, j);
-        }
-        if (c[i][j] == c[i - 1][j - 1] + 1) {
-            return printLcs(c, x, i - 1, j - 1) + x.charAt(i - 1);
-        }
-        return printLcs(c, x, i, j - 1);
+        return result;
     }
 
 }
