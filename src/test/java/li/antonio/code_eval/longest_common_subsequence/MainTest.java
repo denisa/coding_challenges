@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class MainTest {
     @Test
     public void testLcs() throws Exception {
+        assertEquals("BCBA", Main.lcs("ABCBDAB", "BDCABA"));
         assertEquals("MJAU", Main.lcs("XMJYAUZ", "MZJAWXU"));
     }
 }
