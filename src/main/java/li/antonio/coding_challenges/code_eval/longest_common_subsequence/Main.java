@@ -1,4 +1,4 @@
-package li.antonio.code_eval.longest_common_subsequence;
+package li.antonio.coding_challenges.code_eval.longest_common_subsequence;
 
 import java.io.File;
 import java.io.IOException;

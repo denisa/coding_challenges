@@ -1,4 +1,4 @@
-package li.antonio.code_eval.find_min;
+package li.antonio.coding_challenges.code_eval.find_min;
 
 import org.junit.jupiter.api.Test;
 
