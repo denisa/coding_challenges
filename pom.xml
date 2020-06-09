@@ -21,7 +21,9 @@
 
     <properties>
         <project.build.sourceEncoding>us-ascii</project.build.sourceEncoding>
-        <java.complianceLevel>1.7</java.complianceLevel>
+        <java.complianceLevel>11</java.complianceLevel>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
