@@ -1,8 +1,8 @@
 package li.antonio.code_eval.longest_common_subsequence;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainTest {
     @Test
