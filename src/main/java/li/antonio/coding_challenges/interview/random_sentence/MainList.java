@@ -66,17 +66,27 @@ public class MainList {
         for (var current = words[random.nextInt(words.length)]; resultWords.size() < length; ) {
             resultWords.add(current);
 
-            leads.add(current);
-            final var candidates = followers.get(leads);
+            final var candidates = getCandidates(leadSize, followers, leads, current);
             current = candidates.get(random.nextInt(candidates.size()));
-            if (leads.size() == leadSize) {
-                leads.remove(0);
-            }
         }
 
         final var result = String.join(" ", resultWords);
         System.out.println(result);
         return result;
+    }
+
+    private static List<String> getCandidates(final int leadSize, final Map<List<String>, List<String>> followers, final List<String> leads, final String current) {
+        leads.add(current);
+        if (leads.size() > leadSize) {
+            leads.remove(0);
+        }
+        for (; ; ) {
+            final var candidates = followers.get(leads);
+            if (candidates != null) {
+                return candidates;
+            }
+            leads.remove(0);
+        }
     }
 
 }
