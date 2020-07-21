@@ -20,19 +20,14 @@ public class AbsoluteCoupon extends Coupon {
     }
 
     @Override
-    public Function<Double, Double> getPriceModifier() {
-        return d -> d - discount;
-    }
-
-    @Override
-    public void apply(final int i, final List<ShoppingCartItem> shoppingList, final List<List<Function<Double, Double>>> pricingList) {
+    public void apply(final List<ShoppingCartItem> shoppingList, final int i, final List<List<Function<Double, Double>>> pricingList) {
         int hit = 0;
         for (int j = 0; j < shoppingList.size(); j++) {
             if (shoppingList.get(j).getSku().equals(type)) {
                 hit++;
 
                 if (hit == count) {
-                    pricingList.get(j).add(getPriceModifier());
+                    pricingList.get(j).add(d -> d - discount);
                     return;
                 }
             }

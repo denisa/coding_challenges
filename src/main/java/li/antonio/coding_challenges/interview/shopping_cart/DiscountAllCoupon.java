@@ -16,15 +16,10 @@ public class DiscountAllCoupon extends Coupon {
     }
 
     @Override
-    public Function<Double, Double> getPriceModifier() {
-        return d -> d * (1.0 - discount);
-    }
-
-    @Override
-    public void apply(final int i, final List<ShoppingCartItem> shoppingList, final List<List<Function<Double, Double>>> pricingList) {
+    public void apply(final List<ShoppingCartItem> shoppingList, final int i, final List<List<Function<Double, Double>>> pricingList) {
         for (final List<Function<Double, Double>> functions : pricingList) {
             if (!functions.isEmpty()) { // products have at least their own price
-                functions.add(getPriceModifier());
+                functions.add(d -> d * (1.0 - discount));
             }
         }
     }

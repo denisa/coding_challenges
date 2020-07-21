@@ -1,7 +1,7 @@
 package li.antonio.coding_challenges.interview.shopping_cart;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 public class Product implements ShoppingCartItem {
@@ -14,19 +14,12 @@ public class Product implements ShoppingCartItem {
     }
 
     @Override
-    public Function<Double, Double> getPriceModifier() {
-        return d -> price;
+    public Optional<Function<Double, Double>> getPricing() {
+        return Optional.of(d -> price);
     }
 
     @Override
-    public void apply(final List<List<Function<Double, Double>>> list) {
-        final List<Function<Double, Double>> functions = new ArrayList<>();
-        functions.add(getPriceModifier());
-        list.add(functions);
-    }
-
-    @Override
-    public void apply(final int i, final List<ShoppingCartItem> shoppingList, final List<List<Function<Double, Double>>> pricingList) {
+    public void apply(final List<ShoppingCartItem> shoppingList, final int i, final List<List<Function<Double, Double>>> pricingList) {
         // no-op
     }
 
